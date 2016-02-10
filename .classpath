@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="lib/spring-ldap-test-2.0.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-tx-3.1.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-asm-3.1.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

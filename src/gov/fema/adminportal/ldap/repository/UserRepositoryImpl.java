@@ -25,7 +25,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.DistinguishedName;
 import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.ldap.core.NameClassPairCallbackHandler;
+import org.springframework.ldap.filter.AndFilter;
+import org.springframework.ldap.filter.EqualsFilter;
 import org.springframework.ldap.query.LdapQuery;
+import org.springframework.ldap.query.LdapQueryBuilder;
 import org.springframework.ldap.support.LdapNameBuilder;
 import org.springframework.stereotype.Component;
 
@@ -80,7 +84,7 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 	
 	/*
-	 * Let’s say that we want to perform a search starting at the base DN "ou=users,ou=system", 
+	 * Letâ€™s say that we want to perform a search starting at the base DN "ou=users,ou=system", 
 	 * limiting the returned attributes to "cn" and "sn", with the filter (&(objectclass=person)(sn=?)), 
 	 * where we want the ? to be replaced with the value of the parameter lastName. This is how we do it 
 	 * using the LdapQueryBuilder:
@@ -135,6 +139,105 @@ public class UserRepositoryImpl implements UserRepository {
 			return results.get(0);
 		}
 		return " userDetails for " + userName + " not found .";
+	}
+	
+	/**
+	* 
+	* @param uid
+	* Identificador do usuï¿½rio.
+	* @return 
+	* Return a uma lista com todos os grupos que um usuï¿½rio faz parte.
+//	*/
+//	public List findGroupsByUid(String uid) {
+//
+//		AndFilter groupFilter = new AndFilter();
+//		groupFilter.and(new EqualsFilter("objectclass","groupOfNames"));
+////		groupFilter.and(new EqualsFilter("member","uid="+uid+",cn=ce,ou="+organizationalUnit+",o=telecom"));
+//		groupFilter.and(new EqualsFilter("member","uid="+uid+",ou=User,ou=BusinessObjectsDisaster,ou=system"));
+//		
+//	//	List list=ldapTemplate.search(DistinguishedName.EMPTY_PATH, groupFilter.encode(), new GroupContextMapper());
+//		List list=ldapTemplate.search(DistinguishedName.EMPTY_PATH, groupFilter.encode(), new NameClassPairCallbackHandler());
+//		List list = ldapTemplate.search(base, groupFilter.encode(), handler);
+//		return list;
+//	}
+	
+	public void searchByFirstName(String uid) {
+
+        AndFilter filter = new AndFilter();
+        filter.and(new EqualsFilter("objectclass", "groupOfNames"));
+        filter.and(new EqualsFilter("member","uid="+uid+",ou=User,ou=BusinessObjectsDisaster,ou=system"));
+        List<String> list = ldapTemplate.search("", 
+            filter.encode(),
+            new AttributesMapper() {
+                public Object mapFromAttributes(Attributes attrs) throws NamingException {
+                    return attrs.get("cn").get();
+                }
+            });
+        for(String str : list) {
+        	System.out.println(str);
+        }
+	}
+	
+	public List<String> searchUidByGroup(String uid) {
+
+        AndFilter filter = new AndFilter();
+        filter.and(new EqualsFilter("objectclass", "groupOfNames"));
+        filter.and(new EqualsFilter("member","uid="+uid+",ou=User,ou=BusinessObjectsDisaster,ou=system"));
+        List<String> searchList = ldapTemplate.search("", filter.encode(), new AttributesMapper() {
+                public Object mapFromAttributes(Attributes attrs) throws NamingException {
+                    return attrs.get("cn").get();
+                }
+            });
+        return searchList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getAllPersonGroups(String uid) {
+		AndFilter filter = new AndFilter();
+		filter.and(new EqualsFilter("objectclass", "group"));
+//		filter.and(new EqualsFilter("member", "CN=userAlias,OU=Accounts,OU=XXX,OU=YYYUsers,OU=ZZZ,DC=ttt,DC=company,DC=com"));
+		System.out.println("member" + "," + "uid="+uid+",ou=User,ou=BusinessObjectsDisaster,ou=system");
+		filter.and(new EqualsFilter("member", "uid="+uid+",ou=User,ou=BusinessObjectsDisaster,ou=system"));
+		return ldapTemplate.search("",
+				filter.encode(),
+				new AttributesMapper() {
+					public Object mapFromAttributes(Attributes attrs)
+							throws NamingException {
+						return attrs.get("cn").get();
+					}
+				});
+	}
+	
+	@Override
+	public List<String> getUserAttributes(String userName) {
+		ldapTemplate.search(
+				LdapQueryBuilder.query().where("cn").is(userName),
+
+				new AttributesMapper<Void>() {
+
+					public Void mapFromAttributes(Attributes attrs) throws NamingException {
+
+						NamingEnumeration<String> attrIdEnum = attrs.getIDs();
+						while (attrIdEnum.hasMoreElements()) {
+							String attrId = attrIdEnum.next();
+							Attribute attr = attrs.get(attrId);
+
+							System.out.println(attrId + ":");
+
+							// ?????????
+							// System.out.println("           //" + attr.get());
+
+							// ?????????
+							NamingEnumeration<?> nameEnum = attr.getAll();
+							while (nameEnum.hasMore()) {
+								Object valueObj = nameEnum.next();
+								System.out.printf("        %s%n",  valueObj);
+							}
+						}
+						return null;
+					}
+				});
+		return null;
 	}
 
 	 @Override
@@ -349,5 +452,12 @@ public class UserRepositoryImpl implements UserRepository {
 			return result.toString();
 		}
 	}
+
+	@Override
+	public List<Group> getGroupList(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

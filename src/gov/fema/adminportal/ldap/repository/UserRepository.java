@@ -84,4 +84,14 @@ public interface UserRepository {
 
 	boolean removeGroup(Group group);
 
+	public List<String> getAllPersonGroups(String uid);
+	
+	public List<String> getUserAttributes(String userName);
+	
+	public void searchByFirstName(String loginId);
+	
+	public List<String> searchUidByGroup(String uid);
+
+	public List<Group> getGroupList(String string);
+
 }

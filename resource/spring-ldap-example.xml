@@ -35,7 +35,7 @@
 
 	<bean id="simpleDirContextAuthenticationStrategy" class="org.springframework.ldap.core.support.SimpleDirContextAuthenticationStrategy" />
 
-	<bean id="userReposImpl" class="gov.fema.adminportal.ldap.repository.UserRepositoryImpl" />
+	<bean id="ldapReposImpl" class="gov.fema.adminportal.ldap.repository.LdapRepositoryImpl" />
 
 	<ldap:context-source url="ldap://localhost:10389"
 						 base=""
