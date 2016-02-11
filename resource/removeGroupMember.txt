@@ -1,11 +1,8 @@
-/**
-	 * This method is used to add two integers. This is
-	 * a the simplest form of a class method, just to
-	 * show the usage of various javadoc Tags.
-	 * @param numA This is the first paramter to addNum method
-	 * @param numB  This is the second parameter to addNum method
-	 * @return int This returns sum of numA and numB.
-	 */
+2016-02-11 09:01:57 INFO  LdapRepositoryImpl:258 - executing {removeGroupMember}
+2016-02-11 09:01:57 INFO  LdapRepositoryImpl:259 - user.getDn() : CN=BusinessObjectsDisasterUsers1452da,OU=Groups,OU=CH,DC=femadev,DC=net group.getDn() : CN=BusinessObjectsDisasterUsers1452da,OU=Groups,OU=CH,DC=femadev,DC=net
+Exception in thread "main" org.springframework.ldap.OperationNotSupportedException: [LDAP: error code 53 - 00002035: LdapErr: DSID-0C090B3E, comment: Operation not allowed through GC port, data 0, v1db1
+
+
 	@Override
 	public User removeGroupMember(Group group, User user) {
 		log.info("executing {removeGroupMember}");
@@ -20,3 +17,21 @@
 	        });
 		return getUserDetails(user.getUid());
 	}
+	
+	<!-- 
+	URL: http://stackoverflow.com/questions/16412236/how-to-resolve-javax-naming-partialresultexception
+	How to resolve javax.naming.PartialResultException?
+
+    If you were using the port 389 change it to 3268
+    If you were using the port 636 change it to 3269
+	This may work because (and I quote):
+	A GC (global catalog) server returns referrals on 389 to refer to the greater AD "forest", 
+	but acts like a regular LDAP server on 3268 (and 3269 for LDAPS).
+	-->
+	<!-- <ldap:context-source url="ldaps://ccdisaacad-11g.femadev.net:636" -->
+	<ldap:context-source url="ldaps://ccdisaacad-11g.femadev.net:3269"
+	
+						 username="CN=loginwsvc,CN=users,DC=femadev,DC=net"
+						 password="Password1"
+						 authentication-strategy-ref="simpleDirContextAuthenticationStrategy"/>
+
