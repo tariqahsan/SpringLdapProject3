@@ -1,0 +1,22 @@
+/**
+	 * This method is used to add two integers. This is
+	 * a the simplest form of a class method, just to
+	 * show the usage of various javadoc Tags.
+	 * @param numA This is the first paramter to addNum method
+	 * @param numB  This is the second parameter to addNum method
+	 * @return int This returns sum of numA and numB.
+	 */
+	@Override
+	public User removeGroupMember(Group group, User user) {
+		log.info("executing {removeGroupMember}");
+//		ModificationItem item = new ModificationItem(DirContext.REPLACE_ATTRIBUTE, new BasicAttribute("telephoneNumber", newNumber));
+//		ldapTemplate.modifyAttributes("uid=" + userName + ",ou=users", new ModificationItem[]{item});
+		
+		log.info("group.getDn() : " + group.getDn() + " user.getDn() : " + user.getDn());
+		ldapTemplate.modifyAttributes(group.getDn(), new ModificationItem[] {
+	            new ModificationItem(
+	                DirContext.REMOVE_ATTRIBUTE,
+	                new BasicAttribute("member", user.getDn()))
+	        });
+		return getUserDetails(user.getUid());
+	}
