@@ -1,0 +1,4 @@
+2016-02-11 08:16:28 INFO  LdapApp:31 - Test started at Thu Feb 11 08:16:27 EST 2016
+2016-02-11 08:16:28 INFO  LdapRepositoryImpl:258 - executing {removeGroupMember}
+2016-02-11 08:16:28 INFO  LdapRepositoryImpl:262 - group.getDn() : CN=BusinessObjectsDisasterUsers1452da,OU=Groups,OU=CH,DC=femadev,DC=net user.getDn() : CN=Tom Wall,OU=Users,OU=CH,DC=femadev,DC=net
+Exception in thread "main" org.springframework.ldap.OperationNotSupportedException: [LDAP: error code 53 - 00000561: SvcErr: DSID-031A1248, problem 5003 (WILL_NOT_PERFORM), data 0
