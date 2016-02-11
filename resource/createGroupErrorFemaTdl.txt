@@ -1,0 +1,8 @@
+2016-02-11 14:51:00 INFO  LdapRepositoryImpl:428 - executing {createGroup}
+2016-02-11 14:51:00 INFO  LdapRepositoryImpl:437 - group.getCn() : Business_Objects_Disaster_Users_1452da
+2016-02-11 14:51:00 INFO  LdapRepositoryImpl:447 - cn=Business_Objects_Disaster_Users_1452da,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fema,DC=net
+2016-02-11 14:51:00 INFO  LdapRepositoryImpl:448 - -------------------------------------------------------------
+2016-02-11 14:51:00 INFO  LdapRepositoryImpl:449 - distinguishedName : cn=Business_Objects_Disaster_Users_1452da,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fema,DC=net
+2016-02-11 14:51:01 ERROR LdapRepositoryImpl:460 - org.springframework.ldap.NameNotFoundException: [LDAP: error code 32 - 00000525: NameErr: DSID-031A1208, problem 2001 (NO_OBJECT), data 0, best match of:
+	''
+]; remaining name 'cn=Business_Objects_Disaster_Users_1452da,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fema,DC=net'
