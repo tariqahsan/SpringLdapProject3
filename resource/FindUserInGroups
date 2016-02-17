@@ -1,0 +1,50 @@
+Console Error -
+
+2016-02-17 11:39:48 INFO  SpringContext:57 - Running the main method ...
+2016-02-17 11:39:48 INFO  SpringContext:66 - Active Directory related LDAP test started at Wed Feb 17 11:39:48 EST 2016
+2016-02-17 11:39:48 INFO  LdapRepositoryImpl:179 - CN=Tom Wall,OU=Users,OU=CH,DC=femadev,DC=net
+Exception in thread "main" org.springframework.ldap.NameNotFoundException: [LDAP: error code 32 - 0000208D: NameErr: DSID-031001E5, problem 2001 (NO_OBJECT), data 0, best match of:
+	''
+
+	
+	
+Here's the method I have used running in AD DEV -
+
+public List<String> searchCnInGroups(String cn) {
+		String x = "CN=Tom Wall,OU=Users,OU=CH,DC=femadev,DC=net";
+
+		AndFilter filter = new AndFilter();
+		filter.and(new EqualsFilter("objectclass", "top"));
+		filter.and(new EqualsFilter("objectclass", "group"));
+		filter.and(new EqualsFilter("objectCategory", "CN=Group,CN=Schema,CN=Configuration,DC=femadev,DC=net")); // Later added for troubleshooting
+		filter.and(new EqualsFilter("distinguishedName", "CN=Business_Objects_Disaster_Users_1452da,OU=Groups,OU=CH,DC=femadev,DC=net")); // Later added for troubleshooting
+//		filter.and(new EqualsFilter("member","cn=" + cn + "," + Config.getProperty(ParameterConstants.BO_USER)));
+		filter.and(new EqualsFilter("member", x));
+		log.info(x);
+//		log.info("cn=" + cn + "," + Config.getProperty(ParameterConstants.BO_USER));
+		//log.info(cn + "," + Config.getProperty(ParameterConstants.BO_USER));
+		List<String> searchList = ldapTemplate.search("", filter.encode(), new AttributesMapper() {
+			public Object mapFromAttributes(Attributes attrs) throws NamingException {
+				return attrs.get("cn").get();
+			}
+		});
+		return searchList;
+	}
+	
+	Here's connectivity info in spring-config.xml :
+	
+	<!-- FEMA TDL AD -->
+	<!-- <ldap:context-source url="ldaps://MWEI8C7.fema.net:636"
+						 username="CN=FEMA-SVC-bobjsvc1,OU=ServiceAccounts,OU=MW,DC=fema,DC=net"
+						 password="CW0=8ofa"
+						 authentication-strategy-ref="simpleDirContextAuthenticationStrategy"
+						 referral="follow"
+	/>-->
+	<!-- FEMA EADIS DEV AD -->
+	<ldap:context-source url="ldaps://ccdisaacad-11g.femadev.net:636"
+						 username="CN=loginwsvc,CN=users,DC=femadev,DC=net"
+						 password="Password1"
+						 authentication-strategy-ref="simpleDirContextAuthenticationStrategy"
+						 referral="follow"
+	/> 
+	
