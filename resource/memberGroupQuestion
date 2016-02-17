@@ -5,3 +5,8 @@ CN=Szymcik\, Becky,OU=Users,OU=R1,DC=fema,DC=net
 CN=Rosario\, Elizabeth,OU=Users,OU=R1,DC=fema,DC=net
 
 CN=Business_Objects_Users_IA_01,OU=IA,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fema,DC=net
+
+2016-02-17 09:02:47 INFO  LdapRepositoryImpl:175 - CN=Tom Wall,OU=Users,OU=CH,DC=femadev,DC=net
+Exception in thread "main" org.springframework.ldap.NameNotFoundException: [LDAP: error code 32 - 0000208D: NameErr: DSID-031001E5, problem 2001 (NO_OBJECT), data 0, best match of:
+	''
+
