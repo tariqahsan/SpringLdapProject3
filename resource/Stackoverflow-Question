@@ -1,0 +1,23 @@
+Running DSACLS grant security permissions to Group Object using Java Runtime.getRuntime()
+
+
+I am currently using Spring LDAP framework to create groups. Need to grant security permissions to certain admin groups to have permission to have access control to certain user groups.
+
+I trying to run the 'dsacls' command from my Java class using Runtime.getRunTime() -
+
+
+
+    String dcaclsCommand = "dsacls \"" + <UserGroupDn> +  "\" /G FEMA\\" + <AdminGroupName> + ":RPWP";
+    log.info("dcaclsCommand :" + dcaclsCommand);
+    Process process = Runtime.getRuntime().exec(dcaclsCommand);
+    // Cause this process to stop until Process object - 'process' is  
+    // terminated
+    process.waitFor();
+    int processExitValue = process.exitValue();
+
+
+If run the full command displayed on above the log.info on windows cmd prompt it runs successfully and sets the required permission for the Admin Group on the User Group. Getting non-zero (5) for the processExitValue when run from the code.
+
+Any suggestions? Also is it possible to do what I am trying to do using Spring Security ACL? If so, is there any such example code available?
+
+Thanks
