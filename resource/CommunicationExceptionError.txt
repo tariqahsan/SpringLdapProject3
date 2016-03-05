@@ -13,6 +13,12 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 2016-03-03 17:37:12 INFO  LdapRepositoryImpl:697 - -------------------------------------------------------------
 2016-03-03 17:37:12 ERROR LdapRepositoryImpl:704 - org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
 org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+
+
+
+
+url="ldaps://dtei3s3.fematdl.net:636"
+username="CN=Service\, Bobj1,OU=Service Accounts,OU=MW,DC=fematdl,DC=net"
 	at org.springframework.ldap.support.LdapUtils.convertLdapException(LdapUtils.java:108)
 	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:356)
 	at org.springframework.ldap.core.support.AbstractContextSource.doGetContext(AbstractContextSource.java:140)
