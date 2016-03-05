@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:ldap="http://www.springframework.org/schema/ldap"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd
+						   http://www.springframework.org/schema/aop
+						   http://www.springframework.org/schema/aop/spring-aop.xsd
+						   http://www.springframework.org/schema/ldap
+						   http://www.springframework.org/schema/ldap/spring-ldap.xsd
+						   http://www.springframework.org/schema/context
+						   http://www.springframework.org/schema/context/spring-context.xsd
+						   http://www.springframework.org/schema/util
+						   http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	<!-- AD service LDAP related setup -->
+	
+	<!-- We could also have the existing adminportal.properties setup here -->	
+	<context:property-placeholder
+		location="classpath:adminportal.properties"
+		ignore-unresolvable="true"/>
+    
+    <context:component-scan base-package="gov.fema.adminportal.ldap" />
+
+	<bean id="simpleDirContextAuthenticationStrategy" class="org.springframework.ldap.core.support.SimpleDirContextAuthenticationStrategy" />
+
+	<bean id="ldapReposImpl" class="gov.fema.adminportal.ldap.repository.LdapRepositoryImpl" />
+	
+	<!-- FEMA AD -->
+	<ldap:context-source id="contextSource"
+                         url="${ad_url}"
+                         username="${ad_username}"
+                         password="${ad_password}"
+                         authentication-strategy-ref="simpleDirContextAuthenticationStrategy"
+                         referral="follow"
+     />
+	<!-- FEMA TDL AD -->
+	<!-- <ldap:context-source url="ldaps://dtei3s3.fematdl.net:636"
+						 username="CN=Service\, Bobj1,OU=Service Accounts,OU=MW,DC=fematdl,DC=net"
+						 password="aRo[8W0a"
+						 authentication-strategy-ref="simpleDirContextAuthenticationStrategy"
+						 referral="follow"
+	/> -->
+	<!-- FEMA EADIS DEV AD -->
+	<!-- <ldap:context-source url="ldaps://ccdisaacad-11g.femadev.net:636"
+						 username="CN=loginwsvc,CN=users,DC=femadev,DC=net"
+						 password="Password1"
+						 authentication-strategy-ref="simpleDirContextAuthenticationStrategy"
+						 referral="follow"
+	/> -->
+
+    <ldap:ldap-template id="ldapTemplate" context-source-ref="contextSource"/>
+	
+	
+	<!-- A bean identifier, used for referring to the bean elsewhere in the context. Default is "ldapTemplate". -->
+	<!-- <ldap:ldap-template id="ldapTemplate"/> -->
+	
+	<!-- End of AD service LDAP related setup -->
+	
+	<!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+		    <value>classpath:adminportal.properties</value>
+	    </property>
+    </bean> -->
+
+<!-- Do uncomment -->
+    <bean id="disasterSecurityDao" class="gov.fema.adminportal.jdbc.dao.DisasterSecurityDao">
+        <property name="dataSource" ref="edwDataSource"/>
+    </bean>
+
+    <bean id="hcLookupDao" class="gov.fema.adminportal.jdbc.dao.HCLookupDao">
+        <property name="dataSource" ref="odsDataSource"/>
+    </bean> 
+   
+    <bean id="manageDisasterUsersDao" class="gov.fema.adminportal.jdbc.dao.ManageDisasterUsersDao">
+        <property name="dataSource" ref="edwDataSource"/>
+    </bean>
+    
+    <!-- End of uncommenting -->
+        
+    <!--bean id="isaacDao" class="gov.fema.adminportal.jdbc.dao.IsaacDao">
+        <property name="dataSource" ref="isaacDataSource"/>
+    </bean>
+    
+    <bean id="isaacEdwDao" class="gov.fema.adminportal.jdbc.dao.IsaacEdwDao">
+        <property name="dataSource" ref="edwDataSource"/>
+    </bean-->
+
+    <!-- the DataSource (parameterized for configuration via a PropertyPlaceHolderConfigurer) -->
+    <!--bean id="edwDataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${oracle_driver}"/>
+        <property name="url" value="${edw_connection}"/>
+        <property name="username" value="${edw_username}"/>
+        <property name="password" value="${edw_password}"/>
+        <property name="initialSize" value="10"/-->
+        <!--property name="minEvictableIdleTimeMillis" value="600000"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="validationQuery" value="SELECT 1"/-->
+    <!--/bean-->
+    
+    <!-- Do uncomment-->
+   <bean id="edwDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/edwDataSource"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+    
+     <bean id="odsDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/odsDataSource"/>
+        <property name="resourceRef" value="true"/>
+    </bean>
+   <!-- End of uncommenting -->
+   
+    <!--bean id="edwIsaacDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/edwIsaacDataSource"/>
+        <property name="resourceRef" value="true"/>
+    </bean-->
+
+    <!-- the DataSource (parameterized for configuration via a PropertyPlaceHolderConfigurer) -->
+    <!--bean id="odsDataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${oracle_driver}"/>
+        <property name="url" value="${ods_connection}"/>
+        <property name="username" value="${ods_username}"/>
+        <property name="password" value="${ods_password}"/>
+        <property name="initialSize" value="10"/-->
+        <!--property name="minEvictableIdleTimeMillis" value="600000"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="validationQuery" value="SELECT 1"/-->
+    <!--/bean-->
+   
+    <!--bean id="isaacDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/isaacDataSource"/>
+        <property name="resourceRef" value="true"/>
+    </bean-->
+
+</beans>
+
+
