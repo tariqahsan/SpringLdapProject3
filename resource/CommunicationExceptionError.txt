@@ -1,0 +1,364 @@
+2016-03-03 17:37:11 INFO  ClassPathXmlApplicationContext:495 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5aaa2ee4: startup date [Thu Mar 03 17:37:11 EST 2016]; root of context hierarchy
+2016-03-03 17:37:11 INFO  XmlBeanDefinitionReader:315 - Loading XML bean definitions from class path resource [spring-config.xml]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2016-03-03 17:37:12 INFO  PropertySourcesPlaceholderConfigurer:177 - Loading properties file from class path resource [adminportal.properties]
+2016-03-03 17:37:12 INFO  DefaultListableBeanFactory:557 - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@137e5e84: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,ldapRepositoryImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,simpleDirContextAuthenticationStrategy,ldapReposImpl,contextSource,ldapTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2016-03-03 17:37:12 INFO  SpringContext:61 - Running the main method ...
+2016-03-03 17:37:12 INFO  SpringContext:65 - Active Directory related LDAP test started at Thu Mar 03 17:37:11 EST 2016
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:673 - ouName : OU=1969,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:676 - executing {createOrganizationalUnit}
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:696 - OU=1969,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:697 - -------------------------------------------------------------
+2016-03-03 17:37:12 ERROR LdapRepositoryImpl:704 - org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at org.springframework.ldap.support.LdapUtils.convertLdapException(LdapUtils.java:108)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:356)
+	at org.springframework.ldap.core.support.AbstractContextSource.doGetContext(AbstractContextSource.java:140)
+	at org.springframework.ldap.core.support.AbstractContextSource.getReadWriteContext(AbstractContextSource.java:175)
+	at org.springframework.ldap.transaction.compensating.manager.TransactionAwareContextSourceProxy.getReadWriteContext(TransactionAwareContextSourceProxy.java:88)
+	at org.springframework.ldap.core.LdapTemplate.executeReadWrite(LdapTemplate.java:811)
+	at org.springframework.ldap.core.LdapTemplate.bind(LdapTemplate.java:1003)
+	at gov.fema.adminportal.ldap.repository.LdapRepositoryImpl.createOrganizationalUnit(LdapRepositoryImpl.java:698)
+	at gov.fema.adminportal.util.SpringContext.main(SpringContext.java:101)
+Caused by: javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:218)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2740)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:316)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURL(LdapCtxFactory.java:193)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURLs(LdapCtxFactory.java:211)
+	at com.sun.jndi.ldap.LdapCtxFactory.getLdapCtxInstance(LdapCtxFactory.java:154)
+	at com.sun.jndi.ldap.LdapCtxFactory.getInitialContext(LdapCtxFactory.java:84)
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:684)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:307)
+	at javax.naming.InitialContext.init(InitialContext.java:242)
+	at javax.naming.ldap.InitialLdapContext.<init>(InitialLdapContext.java:153)
+	at org.springframework.ldap.core.support.LdapContextSource.getDirContextInstance(LdapContextSource.java:42)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:344)
+	... 7 more
+Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1904)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:279)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:273)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1446)
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:209)
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:901)
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:837)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1023)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1332)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:889)
+	at sun.security.ssl.AppInputStream.read(AppInputStream.java:102)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at com.sun.jndi.ldap.Connection.run(Connection.java:853)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:385)
+	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)
+	at sun.security.validator.Validator.validate(Validator.java:260)
+	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:126)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1428)
+	... 12 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196)
+	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268)
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380)
+	... 18 more
+2016-03-03 17:37:12 INFO  SpringContext:101 - 
+ =>false
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:766 - groupName : CN=Business_Objects_Disaster_Users_1969da
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:769 - executing {createGroup}
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:779 - boGroup : OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:780 - boCnGroupPrefix : CN=Business_Objects_Disaster_Users_
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:781 - boGroupPrefix : Business_Objects_Disaster_Users_
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:782 - boUser : ou=Users,ou=CH,dc=fematdl,dc=net
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:783 - groupType : -2147483646
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:789 - CN=Business_Objects_Disaster_Users_1969da,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:790 - -------------------------------------------------------------
+2016-03-03 17:37:12 INFO  LdapRepositoryImpl:791 - distinguishedName : CN=Business_Objects_Disaster_Users_1969da,ou=1969,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 ERROR LdapRepositoryImpl:798 - org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at org.springframework.ldap.support.LdapUtils.convertLdapException(LdapUtils.java:108)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:356)
+	at org.springframework.ldap.core.support.AbstractContextSource.doGetContext(AbstractContextSource.java:140)
+	at org.springframework.ldap.core.support.AbstractContextSource.getReadWriteContext(AbstractContextSource.java:175)
+	at org.springframework.ldap.transaction.compensating.manager.TransactionAwareContextSourceProxy.getReadWriteContext(TransactionAwareContextSourceProxy.java:88)
+	at org.springframework.ldap.core.LdapTemplate.executeReadWrite(LdapTemplate.java:811)
+	at org.springframework.ldap.core.LdapTemplate.bind(LdapTemplate.java:1003)
+	at gov.fema.adminportal.ldap.repository.LdapRepositoryImpl.createGroup(LdapRepositoryImpl.java:792)
+	at gov.fema.adminportal.util.SpringContext.main(SpringContext.java:102)
+Caused by: javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:218)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2740)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:316)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURL(LdapCtxFactory.java:193)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURLs(LdapCtxFactory.java:211)
+	at com.sun.jndi.ldap.LdapCtxFactory.getLdapCtxInstance(LdapCtxFactory.java:154)
+	at com.sun.jndi.ldap.LdapCtxFactory.getInitialContext(LdapCtxFactory.java:84)
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:684)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:307)
+	at javax.naming.InitialContext.init(InitialContext.java:242)
+	at javax.naming.ldap.InitialLdapContext.<init>(InitialLdapContext.java:153)
+	at org.springframework.ldap.core.support.LdapContextSource.getDirContextInstance(LdapContextSource.java:42)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:344)
+	... 7 more
+Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1904)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:279)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:273)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1446)
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:209)
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:901)
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:837)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1023)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1332)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:709)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:122)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:431)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:404)
+	at com.sun.jndi.ldap.LdapClient.ldapBind(LdapClient.java:358)
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:213)
+	... 19 more
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:385)
+	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)
+	at sun.security.validator.Validator.validate(Validator.java:260)
+	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:126)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1428)
+	... 32 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196)
+	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268)
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380)
+	... 38 more
+2016-03-03 17:37:13 INFO  SpringContext:102 - 
+ =>false
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:822 - groupName : CN=BO_Disaster_Admins_1969
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:825 - executing {createAdminGroup}
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:838 - boGroup : OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:839 - boCnGroupPrefix : OU=1969,CN=BO_Disaster_Admins_
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:840 - boGroupPrefix : BO_Disaster_Admins_
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:841 - boUser : ou=Users,ou=CH,dc=fematdl,dc=net
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:842 - groupType : -2147483646
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:847 - CN=BO_Disaster_Admins_1969,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:848 - ------------------
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:851 - distinguishedName : CN=BO_Disaster_Admins_1969,ou=1969,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 ERROR LdapRepositoryImpl:860 - org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at org.springframework.ldap.support.LdapUtils.convertLdapException(LdapUtils.java:108)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:356)
+	at org.springframework.ldap.core.support.AbstractContextSource.doGetContext(AbstractContextSource.java:140)
+	at org.springframework.ldap.core.support.AbstractContextSource.getReadWriteContext(AbstractContextSource.java:175)
+	at org.springframework.ldap.transaction.compensating.manager.TransactionAwareContextSourceProxy.getReadWriteContext(TransactionAwareContextSourceProxy.java:88)
+	at org.springframework.ldap.core.LdapTemplate.executeReadWrite(LdapTemplate.java:811)
+	at org.springframework.ldap.core.LdapTemplate.bind(LdapTemplate.java:1003)
+	at gov.fema.adminportal.ldap.repository.LdapRepositoryImpl.createAdminGroup(LdapRepositoryImpl.java:852)
+	at gov.fema.adminportal.util.SpringContext.main(SpringContext.java:103)
+Caused by: javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:218)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2740)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:316)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURL(LdapCtxFactory.java:193)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURLs(LdapCtxFactory.java:211)
+	at com.sun.jndi.ldap.LdapCtxFactory.getLdapCtxInstance(LdapCtxFactory.java:154)
+	at com.sun.jndi.ldap.LdapCtxFactory.getInitialContext(LdapCtxFactory.java:84)
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:684)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:307)
+	at javax.naming.InitialContext.init(InitialContext.java:242)
+	at javax.naming.ldap.InitialLdapContext.<init>(InitialLdapContext.java:153)
+	at org.springframework.ldap.core.support.LdapContextSource.getDirContextInstance(LdapContextSource.java:42)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:344)
+	... 7 more
+Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1904)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:279)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:273)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1446)
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:209)
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:901)
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:837)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1023)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1332)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:709)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:122)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:431)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:404)
+	at com.sun.jndi.ldap.LdapClient.ldapBind(LdapClient.java:358)
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:213)
+	... 19 more
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:385)
+	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)
+	at sun.security.validator.Validator.validate(Validator.java:260)
+	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:126)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1428)
+	... 32 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196)
+	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268)
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380)
+	... 38 more
+2016-03-03 17:37:13 INFO  SpringContext:103 - 
+ =>false
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:822 - groupName : CN=BO_Disaster_Admins_1969da
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:825 - executing {createAdminGroup}
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:838 - boGroup : OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:839 - boCnGroupPrefix : OU=1969,CN=BO_Disaster_Admins_
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:840 - boGroupPrefix : BO_Disaster_Admins_
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:841 - boUser : ou=Users,ou=CH,dc=fematdl,dc=net
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:842 - groupType : -2147483646
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:847 - CN=BO_Disaster_Admins_1969da,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:848 - ------------------
+2016-03-03 17:37:13 INFO  LdapRepositoryImpl:851 - distinguishedName : CN=BO_Disaster_Admins_1969da,ou=1969,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fematdl,DC=net
+2016-03-03 17:37:13 ERROR LdapRepositoryImpl:860 - org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at org.springframework.ldap.support.LdapUtils.convertLdapException(LdapUtils.java:108)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:356)
+	at org.springframework.ldap.core.support.AbstractContextSource.doGetContext(AbstractContextSource.java:140)
+	at org.springframework.ldap.core.support.AbstractContextSource.getReadWriteContext(AbstractContextSource.java:175)
+	at org.springframework.ldap.transaction.compensating.manager.TransactionAwareContextSourceProxy.getReadWriteContext(TransactionAwareContextSourceProxy.java:88)
+	at org.springframework.ldap.core.LdapTemplate.executeReadWrite(LdapTemplate.java:811)
+	at org.springframework.ldap.core.LdapTemplate.bind(LdapTemplate.java:1003)
+	at gov.fema.adminportal.ldap.repository.LdapRepositoryImpl.createAdminGroup(LdapRepositoryImpl.java:852)
+	at gov.fema.adminportal.util.SpringContext.main(SpringContext.java:104)
+Caused by: javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:218)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2740)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:316)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURL(LdapCtxFactory.java:193)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURLs(LdapCtxFactory.java:211)
+	at com.sun.jndi.ldap.LdapCtxFactory.getLdapCtxInstance(LdapCtxFactory.java:154)
+	at com.sun.jndi.ldap.LdapCtxFactory.getInitialContext(LdapCtxFactory.java:84)
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:684)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:307)
+	at javax.naming.InitialContext.init(InitialContext.java:242)
+	at javax.naming.ldap.InitialLdapContext.<init>(InitialLdapContext.java:153)
+	at org.springframework.ldap.core.support.LdapContextSource.getDirContextInstance(LdapContextSource.java:42)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:344)
+	... 7 more
+Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1904)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:279)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:273)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1446)
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:209)
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:901)
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:837)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1023)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1332)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:709)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:122)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:431)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:404)
+	at com.sun.jndi.ldap.LdapClient.ldapBind(LdapClient.java:358)
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:213)
+	... 19 more
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:385)
+	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)
+	at sun.security.validator.Validator.validate(Validator.java:260)
+	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:126)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1428)
+	... 32 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196)
+	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268)
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380)
+	... 38 more
+2016-03-03 17:37:13 INFO  SpringContext:104 - 
+ =>false
+2016-03-03 17:37:14 ERROR LdapRepositoryImpl:281 - org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+org.springframework.ldap.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636; nested exception is javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at org.springframework.ldap.support.LdapUtils.convertLdapException(LdapUtils.java:108)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:356)
+	at org.springframework.ldap.core.support.AbstractContextSource.doGetContext(AbstractContextSource.java:140)
+	at org.springframework.ldap.core.support.AbstractContextSource.getReadWriteContext(AbstractContextSource.java:175)
+	at org.springframework.ldap.transaction.compensating.manager.TransactionAwareContextSourceProxy.getReadWriteContext(TransactionAwareContextSourceProxy.java:88)
+	at org.springframework.ldap.transaction.compensating.manager.TransactionAwareContextSourceProxy.getReadOnlyContext(TransactionAwareContextSourceProxy.java:61)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:357)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:328)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:604)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:594)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:482)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:498)
+	at org.springframework.ldap.core.LdapTemplate.search(LdapTemplate.java:514)
+	at gov.fema.adminportal.ldap.repository.LdapRepositoryImpl.getNamefromGroupDn(LdapRepositoryImpl.java:270)
+	at gov.fema.adminportal.util.SpringContext.main(SpringContext.java:170)
+Caused by: javax.naming.CommunicationException: simple bind failed: vvei8c1.fematdl.net:636 [Root exception is javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target]
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:218)
+	at com.sun.jndi.ldap.LdapCtx.connect(LdapCtx.java:2740)
+	at com.sun.jndi.ldap.LdapCtx.<init>(LdapCtx.java:316)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURL(LdapCtxFactory.java:193)
+	at com.sun.jndi.ldap.LdapCtxFactory.getUsingURLs(LdapCtxFactory.java:211)
+	at com.sun.jndi.ldap.LdapCtxFactory.getLdapCtxInstance(LdapCtxFactory.java:154)
+	at com.sun.jndi.ldap.LdapCtxFactory.getInitialContext(LdapCtxFactory.java:84)
+	at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:684)
+	at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:307)
+	at javax.naming.InitialContext.init(InitialContext.java:242)
+	at javax.naming.ldap.InitialLdapContext.<init>(InitialLdapContext.java:153)
+	at org.springframework.ldap.core.support.LdapContextSource.getDirContextInstance(LdapContextSource.java:42)
+	at org.springframework.ldap.core.support.AbstractContextSource.createContext(AbstractContextSource.java:344)
+	... 13 more
+Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1904)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:279)
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:273)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1446)
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:209)
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:901)
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:837)
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1023)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1332)
+	at sun.security.ssl.SSLSocketImpl.writeRecord(SSLSocketImpl.java:709)
+	at sun.security.ssl.AppOutputStream.write(AppOutputStream.java:122)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:431)
+	at com.sun.jndi.ldap.Connection.writeRequest(Connection.java:404)
+	at com.sun.jndi.ldap.LdapClient.ldapBind(LdapClient.java:358)
+	at com.sun.jndi.ldap.LdapClient.authenticate(LdapClient.java:213)
+	... 25 more
+Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:385)
+	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)
+	at sun.security.validator.Validator.validate(Validator.java:260)
+	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:326)
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:231)
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:126)
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1428)
+	... 38 more
+Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:196)
+	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:268)
+	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:380)
+	... 44 more
+2016-03-03 17:37:14 INFO  SpringContext:170 - 
+ => null
+2016-03-03 17:37:14 INFO  ClassPathXmlApplicationContext:495 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5aaa2ee4: startup date [Thu Mar 03 17:37:14 EST 2016]; root of context hierarchy
+2016-03-03 17:37:14 INFO  DefaultListableBeanFactory:433 - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@137e5e84: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,ldapRepositoryImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,simpleDirContextAuthenticationStrategy,ldapReposImpl,contextSource,ldapTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2016-03-03 17:37:14 INFO  XmlBeanDefinitionReader:315 - Loading XML bean definitions from class path resource [spring-config.xml]
+2016-03-03 17:37:14 INFO  PropertySourcesPlaceholderConfigurer:177 - Loading properties file from class path resource [adminportal.properties]
+2016-03-03 17:37:14 INFO  DefaultListableBeanFactory:557 - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@23c4a572: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,ldapRepositoryImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,simpleDirContextAuthenticationStrategy,ldapReposImpl,contextSource,ldapTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+2016-03-03 17:37:14 INFO  ClassPathXmlApplicationContext:1020 - Closing org.springframework.context.support.ClassPathXmlApplicationContext@5aaa2ee4: startup date [Thu Mar 03 17:37:14 EST 2016]; root of context hierarchy
+2016-03-03 17:37:14 INFO  DefaultListableBeanFactory:433 - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@23c4a572: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,ldapRepositoryImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,simpleDirContextAuthenticationStrategy,ldapReposImpl,contextSource,ldapTemplate,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
