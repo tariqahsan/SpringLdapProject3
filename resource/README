@@ -1,0 +1,20 @@
+New methods in LdapRepositoryImpl.java which are also added in the interface - LdapRepository.java
+
+public List<User> getGroupNameList(String sAMAccountName)
+public List<Group> searchMemberInAGroup(String sAMAccountName)
+
+Need to use the wrapper method - public List<User> getGroupNameList(String sAMAccountName) instead to get the list of User objects.
+This method first calls - public List<Group> searchMemberInAGroup(String sAMAccountName)
+if it returns a list of Group object 
+	then calls List<Group> groupList = getMemberList(); and then creates a list of User object
+	populating the user.disasterNumberReportTypes list variable the same way getMemberOfListFromUser
+else 
+	it calls the old getMemberOfListFromUser(sAMAccountName).
+
+So, basically from the custom.jsp dropdown will get the concatenated value of the disasterNumber and reportType from the user.disasterNumberReportTypes list value
+
+// The value below is an example DN. FEMA will determine what CN value to use
+Also, added BoSeeAllDisasterGroups=CN=Business_Objects_Disaster_Users_1956on,OU=1956,OU=DR,OU=Business_Objects,OU=EnterpriseGroups,OU=EnterpriseServers,DC=fema,DC=net
+in the adminportal.properties
+
+and the corresponding ParameterConstants.java is also have entry for the above property
