@@ -1,0 +1,49 @@
+Files Needed for Disaster Group Creation Workflow
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\public_html\AdminPortal\disastersecurityNew.jsp
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\public_html\AdminPortal\adminportalNew.jsp
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\presentation\usermgmt\action\DisasterSecurityAction.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\presentation\usermgmt\form\DisasterUserForm.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\adminportal.properties *
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\util\ParameterConstants.java *
+
+Files Needed for Disaster Group Deletion Workflow
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\handler\DeleteDisasterGroups.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\scheduler\jobs\DeleteDisasterGroupsJob.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\quartz-jobs.xml
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\adminportal.properties *
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\util\ParameterConstants.java *
+
+Files Needed for Manage Disaster User Workflow
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\handler\ManageDisasterUsers.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\scheduler\jobs\ManageDisasterUsersJob.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\jdbc\valueobject\ManageDisasterUsersVO.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\jdbc\dao\ManageDisasterUsersDao.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\quartz-jobs.xml
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\build.xml
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\javax.mail.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\spring-config.xml
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\adminportal.properties *
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\util\ParameterConstants.java *
+
+* Files used in sustainment release as well
+
+Files Needed for Active Directory services (group creation/deletion, user removal, group list search for a user 
+etc. operations using LDAP protocols :
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\ldap\model\Group.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\ldap\model\User.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\ldap\repository\LdapRepository.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\ldap\repository\LdapRepositoryImpl.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\util\ParameterConstants.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\gov\fema\adminportal\util\SpringContext.java
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\adminportal.properties
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\src\log4j.properties
+
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\slf4j-api-1.7.14.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-aop-3.1.1.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-context-support-3.1.1.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-data-commons-1.5.0.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-ldap-core-2.0.4.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-ldap-core-tiger-2.0.4.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-ldap-ldif-batch-2.0.4.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-ldap-ldif-core-2.0.4.RELEASE.jar
+EDW_ODS_VOB\EDW_COMP\EDW_BOBJ\code\AdminPortal_4.0\lib\spring-ldap-test-2.0.4.RELEASE.jar
