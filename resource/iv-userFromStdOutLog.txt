@@ -1,0 +1,31 @@
+AMTomcatValve.getRoles() exit.
+AMTomcatValve.getPrincipal() exit.
+AMTomcatValve.checkRequest() exit.
+AMTomcatValve.authenticate(Request, Response) exit.
+AMTomcatValve.invoke() Passed authentication.
+2016-03-11 14:41:06 DEBUG ModuleUtils:171 - Get module name for path /login.do
+2016-03-11 14:41:06 DEBUG ModuleUtils:196 - Module name found: default
+2016-03-11 14:41:06 DEBUG RequestProcessor:161 - Processing a 'GET' for path '/login'
+2016-03-11 14:41:06 DEBUG RequestProcessor:633 -  Setting user locale 'en_US'
+2016-03-11 14:41:06 DEBUG RequestUtils:220 -  Looking for ActionForm bean instance in scope 'request' under attribute key 'loginForm'
+2016-03-11 14:41:06 DEBUG RequestUtils:262 -  Creating new ActionForm instance of type 'gov.fema.adminportal.presentation.usermgmt.form.LoginForm'
+2016-03-11 14:41:06 DEBUG RequestUtils:265 -  --> gov.fema.adminportal.presentation.usermgmt.form.LoginForm@538e2e5d
+2016-03-11 14:41:06 DEBUG RequestProcessor:329 -  Storing ActionForm bean instance in scope 'request' under attribute key 'loginForm'
+2016-03-11 14:41:06 DEBUG RequestProcessor:812 -  Populating bean properties from this request
+2016-03-11 14:41:06 DEBUG RequestProcessor:255 -  Looking for Action instance for class gov.fema.adminportal.presentation.usermgmt.action.FirstViewAction
+2016-03-11 14:41:06 DEBUG RequestProcessor:269 -   Returning existing Action instance
+2016-03-11 14:41:06 DEBUG BobjAction:93 - Forward: null
+2016-03-11 14:41:06 DEBUG FirstViewAction:53 - Inside FirstViewAction. 
+2016-03-11 14:41:06 DEBUG FirstViewAction:73 - iv_user: jsoule
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: acceptvalue: */*
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: accept-languagevalue: en-US
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: hostvalue: dvbo8a5.fematdl.net:8080
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: iv-credsvalue: Version=1, BAKs3DCCBGkMADCCBGMwggRfAgIIATAsMCgwHgIExPU3GAIDAL8JAgIR5QICAIkCAXQEBgBQVqgdpQwGanNvdWxlMAACAQEwggQmMIIEIjAiDBRBVVRIRU5USUNBVElPTl9MRVZFTDAKMAgCAQQMATAEADA2DBdBWk5fQ1JFRF9BVVRITk1FQ0hfSU5GTzAbMBkCAQQMEkdTUyBBdXRoZW50aWNhdGlvbgQAMCUMEkFaTl9DUkVEX0FVVEhaTl9JRDAPMA0CAQQMBmpzb3VsZQQAMCsMFEFaTl9DUkVEX0FVVEhfTUVUSE9EMBMwEQIBBAwKa2VyYmVyb3N2NQQAMIGXDBVBWk5fQ1JFRF9CUk9XU0VSX0lORk8wfjB8AgEEDHVNb3ppbGxhLzQuMCAoY29tcGF0aWJsZTsgTVNJRSA3LjA7IFdpbmRvd3MgTlQgNi4xOyBXT1c2NDsgVHJpZGVudC83LjA7IFNMQ0MyOyAuTkVUIENMUiAyLjAuNTA3Mjc7IC5ORVQ0LjBDOyAuTkVUNC4wRSkEADAmDBJBWk5fQ1JFRF9JUF9GQU1JTFkwEDAOAgEEDAdBRl9JTkVUBAAwKQwQQVpOX0NSRURfTUVDSF9JRDAVMBMCAQQMDElWX0xEQVBfVjMuMAQAMDMMHEFaTl9DUkVEX05FVFdPUktfQUREUkVTU19CSU4wEzARAgEEDAoweDBhNGFhN2Y1BAAwNgwcQVpOX0NSRURfTkVUV09SS19BRERSRVNTX1NUUjAWMBQCAQQMDTEwLjc0LjE2Ny4yNDUEADAtDBlBWk5fQ1JFRF9QUklOQ0lQQUxfRE9NQUlOMBAwDgIBBAwHRGVmYXVsdAQAMCoMF0FaTl9DUkVEX1BSSU5DSVBBTF9OQU1FMA8wDQIBBAwGanNvdWxlBAAwSAwXQVpOX0NSRURfUFJJTkNJUEFMX1VVSUQwLTArAgEEDCRjNGY1MzcxOC1iZjA5LTExZTUtODk3NC0wMDUwNTZhODFkYTUEADAtDBFBWk5fQ1JFRF9RT1BfSU5GTzAYMBYCAQQMD1NTSzogVExTVjEyOiA5QwQAMEoMFEFaTl9DUkVEX1JFR0lTVFJZX0lEMDIwMAIBBAwpdWlkPWpzb3VsZSxvdT11c2VycyxkYz1mZW1hLGRjPWRocyxkYz1uZXQEADAfDBJBWk5fQ1JFRF9VU0VSX0lORk8wCTAHAgEEDAAEADAnDBBBWk5fQ1JFRF9WRVJTSU9OMBMwEQIBBAwKMHgwMDAwMDgwMQQAMCsMGHRhZ3ZhbHVlX2xvZ2luX3VzZXJfbmFtZTAPMA0CAQQMBmpzb3VsZQQAMDYMJHRhZ3ZhbHVlX21heF9jb25jdXJyZW50X3dlYl9zZXNzaW9uczAOMAwCAQQMBXVuc2V0BAAwRwwWdGFndmFsdWVfc2Vzc2lvbl9pbmRleDAtMCsCAQQMJDMyODBhOTkwLWU3YzEtMTFlNS04Y2EwLTAwNTA1NmE4NTU3NwQA
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: iv-remote-addressvalue: 10.74.167.245
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: iv-uservalue: jsoule
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: user-agentvalue: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E)
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: viavalue: HTTP/1.1 dtpsua1-mgt1:443
+2016-03-11 14:41:06 DEBUG FirstViewAction:83 - Header name: iv_server_namevalue: SSO-webseald-dtpsua1-mgt1
+2016-03-11 14:41:06 DEBUG FirstViewAction:104 - Is proceed: true
+2016-03-11 14:41:06 DEBUG FirstViewAction:128 - Using trusted authentication
+2016-03-11 14:41:06 DEBUG FirstViewAction:131 - TrustedPrincipal received: jsoule
